@@ -1,0 +1,19 @@
+
+VS Code: ssh extension
+> ssh: new connection
+
+psql -h dbpg-ifi-kurs03 -U arneet -d databaseNavn
+skriv inn passord
+
+Åpnes i VS code terminal:
+
+Kjører SELECT setninger her:
+
+
+Basic psql commands:
+List All Databases: “\l”.
+Access or Switch a Database: “\c db_name”.
+List All Tables: “\dt”.
+Describe All Tables: “\d”.
+
+https://www.commandprompt.com/education/postgresql-basic-psql-commands/

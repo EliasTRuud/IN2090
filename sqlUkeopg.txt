@@ -1,0 +1,6 @@
+Skriv en spørring over Northwind-databasen som:
+
+1. finner navn på alle kunder fra London
+SELECT contact_name FROM customers;
+
+2. finner lasten (i tonn) for alle bestillinger som er sendt med skipene Around the Horn og Ernst Handel
