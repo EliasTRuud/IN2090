@@ -1,0 +1,38 @@
+https://www.uio.no/studier/emner/matnat/ifi/IN2090/h23/innleveringer/oblig1.pdf
+
+1. Entiteter
+2. Svake entiteter
+3. 1-1-relasjoner
+4. 1-N-relasjoner 
+5. M-N-relasjoner
+6. Flerverdi-attributter
+7. Ternære/N-ære relasjoner
+
+Menneske(brukernavn, personnr, navn)
+    - KN: {brukernavn}, {personnr}
+    - PN: {brukernavn}
+
+Romvesen(navn, grupppe)
+    - KN/PN: {navn}
+
+Melding(id, diagram, dato, klokkeslett, mn_mottaker)
+    - KN/PN: {id}, {mn_mottaker}
+    - FN: (mn_mottaker) -> Menneske(brukernavn)
+    #relasjonen mn-mottaker, en melding må en og bare en
+
+Vedlegg(navn, innhold, meldingId) #størrelse ikke inkludert
+    - KN: {navn, meldingId}
+    - FN: (meldingId) -> Melding(id) #inneholder relasjon
+
+#M-N blir ny relasjon, PN lik alle PN-attributter til koblede entiteter
+# romvesenNavn blir KN pga. total deltakelse
+RV_mottaker(meldingId, romvesenNavn)
+    - KN/PN: {meldingId, romvesenNavn}
+    - FN: (meldingId) -> Melding(id) 
+          (romvesenNavn) -> Romvesen(navn)
+
+#Flerverdi attributter blir også ny relasjon med KN/PN lik alle attributter
+# FN lik entitetens PN
+Anvarsområde(brukernavn, ansvarsområde)
+    - KN/PN: {brukernavn, ansvarsområde}
+    - FN: (brukernavn) -> Menneske(brukernavn)
