@@ -17,3 +17,12 @@ List All Tables: “\dt”.
 Describe All Tables: “\d”.
 
 https://www.commandprompt.com/education/postgresql-basic-psql-commands/
+
+SELECT attributes
+FROM table
+WHERE condition
+LIKE '%string_to_search%'
+
+'%end_of_string'
+'%anywhere%'
+'start%'
