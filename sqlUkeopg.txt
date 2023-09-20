@@ -16,6 +16,6 @@ WHERE units_in_stock*unit_price > 1000 AND (quantity_per_unit LIKE '% g %' OR qu
 
 4. finner orderIDen til alle bestillinger som inneholder et discontinued produkt
 SELECT DISTINCT order_id 
-FROM order_details 
-INNER JOIN products ON order_details.product_id=products.product_id  --product_id er det som linker dem sammen
+FROM order_details INNER JOIN products 
+    ON order_details.product_id=products.product_id  --product_id er det som linker dem sammen
 WHERE discontinued = 1;
