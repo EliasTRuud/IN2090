@@ -13,3 +13,9 @@ WHERE ship_name = 'Ernst Handel' OR ship_name =  'Around the Horn';
 SELECT product_name  
 FROM products 
 WHERE units_in_stock*unit_price > 1000 AND (quantity_per_unit LIKE '% g %' OR quantity_per_unit LIKE '% kg %') ; 
+
+4. finner orderIDen til alle bestillinger som inneholder et discontinued produkt
+SELECT DISTINCT order_id 
+FROM order_details 
+INNER JOIN products ON order_details.product_id=products.product_id  --product_id er det som linker dem sammen
+WHERE discontinued = 1;
