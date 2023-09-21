@@ -29,6 +29,20 @@ Describe All Tables: “\d”.
 https://www.commandprompt.com/education/postgresql-basic-psql-commands/
 
 
+SQL commands:
+
+Order in syntax:
+SELECT
+FROM
+WHERE
+GROUP BY
+HAVING
+ORDER BY
+LIMIT
+
+--------------------------------------------------
+LIKE statement to find strings:
+
 SELECT attributes
 FROM table
 WHERE condition
