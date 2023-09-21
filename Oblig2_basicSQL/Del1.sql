@@ -1,3 +1,6 @@
+--Oblig 2 - Enkel SQL
+
+--Del : Setup & Queries
 /*
  1. SSH til uio
  2. psql -h dbpg-ifi-kurs03 -U arneet -d arneet
@@ -102,7 +105,6 @@ GROUP BY s.navn
 HAVING count(s.navn) > 1; --count(s.navn), teller ant samme stjerne_navn opptrer i tabellen
 
 
-
 --Opg 4
 -- Siden vi har joinet planet og stjerne, vil avstand være fra stjernetabellen.
 -- stjerne.avstand referer til avstanden fra stjernen til vår sol, ikke avstand mellom planeten og stjernen
@@ -110,3 +112,58 @@ SELECT oppdaget
 FROM planet
     NATURAL JOIN stjerne
 WHERE avstand > 8000;
+
+
+
+--DEL 2: Lage og INSERT i tables 
+
+--Opg 5
+/*
+Legg til jorda(planet) og sola(stjerne) inn i de relevante tabellene
+Bruker: INSERT INTO table VALUES ('value1', 'value2', ...)
+
+ Stjerne(navn, [avstand], [masse])
+ Planet(navn, [masse], [oppdaget], [stjerne])
+
+a) Setter inn Sola i stjerne-tabellen, med navn lik Sola, avstand lik 0og masse lik 1.
+b) ) Setter inn Jorda i planet-tabellen, med navn lik Jorda, masse lik 0.003146, oppdaget lik NULL, og stjerne lik Sola.
+*/;
+
+--Insert sola inn i stjernetabellen
+INSERT INTO stjerne VALUES ('Sola', '0', '1');
+
+--Insert jorda inn i planet, referer til Sola ved å skrive dets navn verdi: 'Sola'
+INSERT INTO planet VALUES ('Jorda', 0.003146, NULL, 'Sola');
+
+
+--Opg 6
+/*
+Ny tabell: observasjon
+- observasjons_id(int) , NOT NULL, 
+- tidspunkt(TIMESTAMP), NOT NULL, 
+- (planet) -> Planet(navn), FOREIGN KEY
+- kommentar(str), no constraint
+
+observasjons_id brukes som Primary Key
+
+https://www.sqlines.com/postgresql/datatypes/serial 
+SERIAL - SERIAL data type allows you to automatically generate unique integer numbers 
+         (IDs, identity, auto-increment, sequence) for a column.
+*/;
+
+CREATE TABLE observasjon (
+    observasjons_id SERIAL PRIMARY KEY, --if not SERIAL, specify type(int)
+    tidspunkt TIMESTAMP NOT NULL,
+    planet VARCHAR(255) NOT NULL REFERENCES planet(navn),
+    kommentar text 
+);
+/*
+id=DEFAULT gir automatisk id. 
+INSERT INTO observasjon 
+VALUES(DEFAULT, '2017-07-23', 'Jorda', 'veldig kult!'); 
+
+eller så kan vi skrive:
+INSERT INTO observasjon (tidspunkt, planet, kommentar)
+VALUES('2017-07-23', 'Jorda', 'veldig kult!'); 
+
+*/
