@@ -46,7 +46,7 @@ SELECT max(abs(od.unit_price - p.unit_price)) AS price_diff
 FROM order_details AS od INNER JOIN products AS p ON od.product_id = p.product_id;
 
 Bruker SELECT table ovenifra i WHERE klausulen får å finne hvor absDiff = maxDiff:
-SELECT DISTINCT p.product_name, p.unit_price AS nowPrice, od.unit_price AS oldPrice, abs(od.unit_price - p.unit_price) AS priceDiff
+SELECT DISTINCT p.product_name
 FROM products p
 INNER JOIN order_details od ON p.product_id = od.product_id
 WHERE abs(od.unit_price - p.unit_price) =

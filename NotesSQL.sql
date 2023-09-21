@@ -148,5 +148,13 @@ WITH query_name1 AS (
      )
 SELECT ...;
 
+--------------------------------------
+Limit keyword, begrenese resultatene
+Alltid siste keyword
+LIMIT rows_count OFFSET rows_to_skip;
 
-
+f.eks: Plukk ut de 5 beste filmene
+SELECT film_id, title, year, score
+FROM film
+ORDER BY score
+LIMIT 5 DESC; --Descending order, highest scores on top
