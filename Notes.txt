@@ -4,6 +4,7 @@ VS Code: ssh extension
 ssh arneet@login.ifi.uio.no
 
 psql -h dbpg-ifi-kurs03 -U arneet -d databaseNavn # northwind
+psql -h dbpg-ifi-kurs03 -U arneet -d fdb #fildatabasen
 skriv inn passord
 
 Åpnes terminal is VS code -> trykk psql og åpne i editor.
@@ -16,6 +17,13 @@ Access or Switch a Database: “\c db_name”.
 List All Tables: “\dt”.
 Describe All Tables: “\d”.
 
+Move files:
+scp navn.sql arneet@login.ifi.uio.no:~/path/to/folder/
+
+List tables in schema:
+\d schema_name.*
+
+----------------------------------------------------------------
 https://www.commandprompt.com/education/postgresql-basic-psql-commands/
 
 SELECT attributes

@@ -35,7 +35,7 @@ sitt nåværende tilstand, inkludert tabeller, data, visninger, indekser, funksj
 For å opprette en dumpfil i psql, kan du bruke følgende kommando:
 pg_dump -U brukernavn -d databasenavn -f dumpfil.sql
 eller 
-pg_dump [flag] db > filnavn
+pg_dump [flag] db_navn > filnavn
 
 Når kommandoen er kjørt, vil psql opprette en dumpfil som inneholder SQL-kommandoer for å gjenopprette databasen og dens objekter.
 

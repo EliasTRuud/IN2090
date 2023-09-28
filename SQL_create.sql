@@ -18,7 +18,6 @@ However, VARCHAR, INT, DATE, and DECIMAL (or NUMERIC) are often widely used data
 */;
 
 
-
 --Constraints
 /*
 Are rules and limitations applied to the data in database tables. 
