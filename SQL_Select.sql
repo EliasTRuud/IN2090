@@ -3,9 +3,11 @@ VS Code: ssh extension
 > ssh: new connection
 
 psql -h dbpg-ifi-kurs03 -U arneet -d databaseNavn
+(fdb : filmdatabase)
+(Northwind)
 skriv inn passord
 
-Åpnes i VS code terminal:
+Åpnes i VS code terminal:;
 
 
 Edit expression: \e
@@ -19,15 +21,21 @@ Clear screen: Ctrl + L
 
 Kjører SELECT setninger her:
 
-
 Basic psql commands:
 List All Databases: “\l”.
 Access or Switch a Database: “\c db_name”.
 List All Tables: “\dt”.
 Describe All Tables: “\d”.
+Describe a Specific Table: “\d tab_name”.
+List All Schemas: “\dn”.
+List All Views: “\dv”.
+Execute Previous Command: “\g”.
+Quit psql: “\q”.
+Save Querys Results to a Specific File: “\o file_name”.
+Run psql Commands/queries From a Particular File: “\i file_name”.
 
-https://www.commandprompt.com/education/postgresql-basic-psql-commands/
-
+https://www.commandprompt.com/education/postgresql-basic-psql-commands/ 
+;
 
 SQL commands:
 

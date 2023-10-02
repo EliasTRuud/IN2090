@@ -5,6 +5,7 @@ ssh arneet@login.ifi.uio.no
 
 psql -h dbpg-ifi-kurs03 -U arneet -d databaseNavn # northwind
 psql -h dbpg-ifi-kurs03 -U arneet -d fdb #fildatabasen
+psql -h dbpg-ifi-kurs03 -U arneet -d arneet # write rights here. bruker for Oblig
 skriv inn passord
 
 Åpnes terminal is VS code -> trykk psql og åpne i editor.
@@ -22,6 +23,12 @@ scp navn.sql arneet@login.ifi.uio.no:~/path/to/folder/
 
 List tables in schema:
 \d schema_name.*
+
+List schemas:
+\dn 
+
+Enter schema:
+SET search_path = schema_name;
 
 ----------------------------------------------------------------
 https://www.commandprompt.com/education/postgresql-basic-psql-commands/
