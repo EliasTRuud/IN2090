@@ -19,19 +19,50 @@ CREATE TABLE forum.thread(
     tid int PRIMARY KEY,
     navn text
 );
-CREATE TABLE orum.log_entry(
-    lid int PRIMARY KEY,
+
+CREATE TABLE forum.post (
+    tid int REFERENCES forum.thread(tid),
     username text REFERENCES forum.member(username),
-    log_in timestamp,
-    log_out timestamp
+    posted_at timestamp NOT NULL CHECK (posted_at <= now()),
+    content text NOT NULL CHECK (content != ''),
+    CONSTRAINT post_pk PRIMARY KEY (tid, username, posted_at)
 );
-CREATE TABLE forum.post(
-    posted_at timestamp CHECK (posted_at <= now()), -- opg 5
-    username text REFERENCES forum.member(username), -- FK -> member(username)
-    thread int REFERENCES forum.thread(tid), -- FK -> thread(tid)
-    content text,
-    CONSTRAINT post_pk PRIMARY KEY (posted_at, username, thread)
-); -- PK {posted_at, username, thread}
+
+CREATE TABLE forum.log_entry (
+    lid SERIAL PRIMARY KEY,
+    username text REFERENCES forum.member(username),
+    log_in timestamp NOT NULL CHECK (log_in <= now()),
+    log_out timestamp CHECK (log_out > log_in)
+);
+
+CREATE VIEW forum.logged_in AS
+SELECT m.username,
+    now() - l.log_in AS time_logged_in,
+    m.mail
+FROM forum.member as M
+    INNER JOIN forum.log_entry AS l ON (m.username = l.username)
+WHERE l.log_out IS NULL;
+
+CREATE VIEW forum.dash_board AS
+SELECT (
+        SELECT count(*)
+        FROM forum.logged_in --pulls from the View table
+    ) AS active_users,
+    (
+        SELECT count(*)
+        FROM forum.log_entry
+        WHERE log_out >= current_date::timestamp --casting current_date to timestamp, meaning 00:00:00 midnight
+            OR log_out IS NULL
+    ) AS logins_today,
+    (
+        SELECT count(*)
+        FROM forum.post
+        WHERE posted_at >= current_date::timestamp
+    ) AS posts_today,
+    (
+        SELECT count(*) total_nr_posts
+        FROM forum.post
+    ) AS total_posts;
 
 COMMIT;
 
