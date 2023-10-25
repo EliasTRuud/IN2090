@@ -12,7 +12,7 @@ De har forstått at de da trenger å vite hvilke funksjonelle avhengigheter som 
 født -> alder
 
 -- b)  Kombinasjonen av født og personnr utgjør en persons fødselsnummer og er derfor unikt for alle ansatte.
-født, personnr -> fødselsnummer ? kandidatnøkkel;
+født, personnr -> fødselsnummer , er kandidatnøkkel;
 
 -- c) 
 /*
@@ -101,12 +101,35 @@ A -> B
 De ulike normalformene beskriver hvordan de ulike attributtene relateres og
 avhengig av hvilken form vil det være regler på hvilke attributter som har lov
 til å være på venstre eller høyre side av de funksjonelle avhengighetene. 
-Høyere grader av normalformer eliminerer anomolier, men øker kompleksitet/ant tabeller.
+Høyere grader av normalformer eliminerer anomolier, men øker kompleksitet/ant tabeller.;
 
 -- b) Vis dem hvordan du finner normalformen på relasjonen AgenterPåOppdrag.
-bestem normalform
+Bestem normalform: FD X -> A
+1. Er X en supernøkkel?
+2. Er A et nøkkelattributt?
+3. Er X del av en kandidatnøkkel?
 
+FD 1: agentId -> navn, født 
+    1. agentId er ikke en supernøkkel
+    2. navn, født er nøkkelattributter så 3NF så langt
 
+FD 2: navn, født -> agentId
+    1. er ikke supernøkkel
+    2. er nøkkelattributt -> 3NF
+
+FD 3: navn -> initaler
+    1. ikke supernøkkel
+    2. initialer er ikke nøkkelattributt
+    3. navn er den del av kandidatnøkkel, altså brudd på 2NF -> 1NF
+
+FD 4: oppdragNavn -> varighet, lokasjon
+    1. ikke supernøkkel
+    2. ikke nøkkelattributt
+    3. oppdragsNavn er del av kandidatnøkkel -> 1NF
+
+Relasjonen vil ta form på den laveste vi fant, altså 1NF.
+
+;
 
 
 -- Oppgave 4 - Tapsfri dekomposisjon
@@ -168,7 +191,7 @@ FD 4 oppfyller BCNF.
 
 ----------------------------------------
 
-For FD 5, blir det borte når vi kemponerer.
+For FD 5, blir den borte når vi dekemponerer.
 
 S1, S21, S22.
 
