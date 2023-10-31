@@ -164,38 +164,52 @@ FD 1 og 2:
 Begge oppfyller BCNF siden A og BC er supernøkler.
 
 ----------------------------------------
+
 S2(A, D, E, F), KN: {A, D}
-FD 3, 4, 5:
 3. D → E
 4. AD → F
 5. E → F
 
-FD 4 oppfyller BCNF.
 
 FD 3 oppfyller ikke BCNF:
-D+ = D, E -> S21(D, E), S22(D, A, F)
+D+ = D, E, F -> S21(D, E, F), S22(D, A)
+
 
 ----------------------------------------
-S21(D, E), KN: {D}
-FD 3:
+S21(D, E, F), KN: {D}
+3. D -> E
+5. E -> F
+
+FD 3 opfyller BCNF, D er supernøkkel
+
+FD 4 oppfyller ikke BCNF.
+E+ = E, F -> S211(E,F), S212(E, D)
+
+---------------------------------------
+
+S211(E, F), KN: {E}
+5. E -> F
+
+FD 5 oppfyller BCNF
+
+--------------------------------------
+
+S212(E,D), KN: {D}
 3. D -> E
 
-Nå vil FD 3 oppfylle BCNF.
+FD 3 oppfyller BCNF
+--------------------------------------
 
-----------------------------------------
-S22(D, A, F), KN: {A, D}
-FD 4 og 5:
-4. AD → F
+S22(D, A), KN: {A}
+Har ingen relasjoner.
 
-FD 4 oppfyller BCNF.
+--------------------------------------
 
-----------------------------------------
-
-For FD 5, blir den borte når vi dekemponerer.
-
-S1, S21, S22.
-
-
+Totalt får vi:
+S1(A, B, C)
+S22(D, A)
+S211(E, F)
+S212(E, D)
 
 
 
